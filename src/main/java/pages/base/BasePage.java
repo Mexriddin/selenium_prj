@@ -48,6 +48,7 @@ public class BasePage {
         input.sendKeys(Keys.BACK_SPACE);
         input.sendKeys(value);
     }
+
     /**
      * Check is auth frame is visible
      * **/
