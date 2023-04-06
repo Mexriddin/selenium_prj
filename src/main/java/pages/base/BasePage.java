@@ -1,58 +1,37 @@
 package pages.base;
 
-import org.openqa.selenium.By;
+
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-
-import static constants.Constant.TimeoutVariables.EXPLICIT_WAIT;
+import static com.codeborne.selenide.Selenide.$x;
+import static com.codeborne.selenide.Selenide.open;
 
 public class BasePage {
-    public WebDriver driver;
-    public BasePage(WebDriver driver) {
-        this.driver=driver;
-    }
 
-    public final By authWidget = By.xpath("//iframe[@src='https://login-widget.privat24.ua/']");
+    public final SelenideElement authWidget = $x("//iframe[@src='https://login-widget.privat24.ua/']");
 
     /**
      * The method for navigating to a specific url
-     * **/
+     **/
     public void goToUrl(String url) {
-        driver.get(url);
+        open(url);
     }
 
     /**
-     * Wait for visibility element in DOM model
+     * A method that cleans the element of the text and enters the desired text
+     * @param element Selenide SelenideElement
+     * @param value text
      * **/
-    public WebElement waitElementIsVisible(WebElement element) {
-        new WebDriverWait(driver, Duration.ofSeconds(EXPLICIT_WAIT)).until(ExpectedConditions.visibilityOf(element));
-        return element;
-    }
-    /**
-     * Typing in input field with value
-     * **/
-    protected void typeInput(By locator, String value) {
-        waitElementIsVisible(driver.findElement(locator)).sendKeys(value);
-    }
-    /**
-     * Clear input field and typing with value
-     * **/
-    protected void clearAndTypeInput(By locator, String value){
-        WebElement input = driver.findElement(locator);
-        input.sendKeys(Keys.CONTROL +"A");
-        input.sendKeys(Keys.BACK_SPACE);
-        input.sendKeys(value);
+    protected void clearAndTypeInput(SelenideElement element, String value){
+        while (!element.getAttribute("value").equals("")) element.sendKeys((Keys.BACK_SPACE));
+        element.sendKeys(value);
     }
 
     /**
-     * Check is auth frame is visible
+     * Checking whether a frame for authorization
      * **/
-    public void isAuthWidgetPresent(){
-        waitElementIsVisible(driver.findElement(authWidget));
+    public void checkIsDisplayedAuthWidget(){
+        authWidget.shouldBe(Condition.visible);
     }
 }
