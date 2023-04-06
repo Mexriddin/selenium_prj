@@ -1,93 +1,85 @@
-//package pages.transfer;
-//
-//import org.junit.jupiter.api.Assertions;
-//import org.openqa.selenium.By;
-//import org.openqa.selenium.WebDriver;
-//import org.openqa.selenium.WebElement;
-//import pages.base.BasePage;
-//import pages.telecomunications.MobilePhoneReplenishmentPage;
-//
-//public class TransferToCardPage  extends BasePage {
-//    public TransferToCardPage(WebDriver driver) {
-//        super(driver);
-//    }
-//
-//    private final By inputCardAmount = By.xpath("//input[@data-qa-node='amount']");
-//    private final By inputCardFrom = By.xpath("//input[@data-qa-node='numberdebitSource']");
-//    private final By inputCardExpDate = By.xpath("//input[@data-qa-node='expiredebitSource']");
-//    private final By inputCardCvv = By.xpath("//input[@data-qa-node='cvvdebitSource']");
-//    private final By firstNameDebit = By.xpath("//input[@data-qa-node='firstNamedebitSource']");
-//    private final By lastNameDebit = By.xpath("//input[@data-qa-node='lastNamedebitSource']");
-//    private final By inputCardReceiver = By.xpath("//input[@data-qa-node='numberreceiver']");
-//    private final By firstNameReceiver = By.xpath("//input[@data-qa-node='firstNamereceiver']");
-//    private final By lastNameReceiver = By.xpath("//input[@data-qa-node='lastNamereceiver']");
-//    private final By buttonCurrency = By.xpath("//button[@data-qa-node='currency']");
-//    private final By currencyUSD = By.xpath("//button[@data-qa-value='USD']");
-//    private final By buttonSubmit = By.xpath("//button[@type='submit']");
-//
-//
-//    private final By transferDetails = By.xpath("//div[@data-qa-node='total']/span");
-//
-//
-//    public TransferToCardPage enterCardFrom(String cardFrom) {
-//        typeInput(inputCardFrom, cardFrom);
-//        return this;
-//    }
-//
-//    public TransferToCardPage enterCardExpDate(String expDate) {
-//        typeInput(inputCardExpDate, expDate);
-//        return this;
-//    }
-//
-//    public TransferToCardPage enterCardCvv(String cvv) {
-//        typeInput(inputCardCvv, cvv);
-//        return this;
-//    }
-//
-//    public TransferToCardPage enterCardFromFirstName(String firstName) {
-//        typeInput(firstNameDebit, firstName);
-//        return this;
-//    }
-//
-//    public TransferToCardPage enterCardFromLastName(String lastName) {
-//        typeInput(lastNameDebit, lastName);
-//        return this;
-//    }
-//
-//    public TransferToCardPage enterCardReceiver(String cardReceiver) {
-//        typeInput(inputCardReceiver, cardReceiver);
-//        return this;
-//    }
-//
-//    public TransferToCardPage enterCardReceiverFirstName(String firstName) {
-//        typeInput(firstNameReceiver, firstName);
-//        return this;
-//    }
-//
-//    public TransferToCardPage enterCardReceiverLastName(String lastName) {
-//        typeInput(lastNameReceiver, lastName);
-//        return this;
-//    }
-//
-//    public TransferToCardPage enterAmount(String amount) {
-//        clearAndTypeInput(inputCardAmount, amount);
-//        return this;
-//    }
-//
-//    public TransferToCardPage chooseUsdCurrency() {
-//        driver.findElement(buttonCurrency).click();
-//        driver.findElement(currencyUSD).click();
-//        return this;
-//    }
-//
-//    public TransferToCardPage submitToTransfer() {
-//        driver.findElement(buttonSubmit).click();
-//        return this;
-//    }
-//
-//    public TransferToCardPage checkTransferDetailsIsPresentInTheCart(String text) {
-//        WebElement details = waitElementIsVisible(driver.findElement(transferDetails));
-//        Assertions.assertEquals(text, details.getText());
-//        return this;
-//    }
-//}
+package pages.transfer;
+
+import pages.base.BasePage;
+
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
+import static com.codeborne.selenide.Selenide.$x;
+
+public class TransferToCardPage  extends BasePage {
+
+    private final SelenideElement inputCardAmount = $x("//input[@data-qa-node='amount']");
+    private final SelenideElement inputCardFrom = $x("//input[@data-qa-node='numberdebitSource']");
+    private final SelenideElement inputCardExpDate = $x("//input[@data-qa-node='expiredebitSource']");
+    private final SelenideElement inputCardCvv = $x("//input[@data-qa-node='cvvdebitSource']");
+    private final SelenideElement firstNameDebit = $x("//input[@data-qa-node='firstNamedebitSource']");
+    private final SelenideElement lastNameDebit = $x("//input[@data-qa-node='lastNamedebitSource']");
+    private final SelenideElement inputCardReceiver = $x("//input[@data-qa-node='numberreceiver']");
+    private final SelenideElement firstNameReceiver = $x("//input[@data-qa-node='firstNamereceiver']");
+    private final SelenideElement lastNameReceiver = $x("//input[@data-qa-node='lastNamereceiver']");
+    private final SelenideElement buttonCurrency = $x("//button[@data-qa-node='currency']");
+    private final SelenideElement currencyUSD = $x("//button[@data-qa-value='USD']");
+    private final SelenideElement buttonSubmit = $x("//button[@type='submit']");
+
+
+    public TransferToCardPage enterCardFrom(String cardFrom) {
+        clearAndTypeInput(inputCardFrom, cardFrom);
+        return this;
+    }
+
+    public TransferToCardPage enterCardExpDate(String expDate) {
+        clearAndTypeInput(inputCardExpDate, expDate);
+        return this;
+    }
+
+    public TransferToCardPage enterCardCvv(String cvv) {
+        clearAndTypeInput(inputCardCvv, cvv);
+        return this;
+    }
+
+    public TransferToCardPage enterCardFromFirstName(String firstName) {
+        clearAndTypeInput(firstNameDebit, firstName);
+        return this;
+    }
+
+    public TransferToCardPage enterCardFromLastName(String lastName) {
+        clearAndTypeInput(lastNameDebit, lastName);
+        return this;
+    }
+
+    public TransferToCardPage enterCardReceiver(String cardReceiver) {
+        clearAndTypeInput(inputCardReceiver, cardReceiver);
+        return this;
+    }
+
+    public TransferToCardPage enterCardReceiverFirstName(String firstName) {
+        clearAndTypeInput(firstNameReceiver, firstName);
+        return this;
+    }
+
+    public TransferToCardPage enterCardReceiverLastName(String lastName) {
+        clearAndTypeInput(lastNameReceiver, lastName);
+        return this;
+    }
+
+    public TransferToCardPage enterAmount(String amount) {
+        clearAndTypeInput(inputCardAmount, amount);
+        return this;
+    }
+
+    public TransferToCardPage chooseUsdCurrency() {
+        buttonCurrency.shouldBe(Condition.visible).click();
+        currencyUSD.shouldBe(Condition.visible).click();
+        return this;
+    }
+
+    public TransferToCardPage submitToTransfer() {
+        buttonSubmit.shouldBe(Condition.visible).click();
+        return this;
+    }
+
+    public TransferToCardPage checkTransferDetailsIsPresentInTheCart(String text) {
+        checkMessage(text);
+        return this;
+    }
+}
