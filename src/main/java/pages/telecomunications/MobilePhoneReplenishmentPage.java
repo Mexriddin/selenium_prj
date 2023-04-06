@@ -1,91 +1,136 @@
-//package pages.telecomunications;
-//
-//import org.junit.jupiter.api.Assertions;
-//import org.openqa.selenium.By;
-//import org.openqa.selenium.Keys;
-//import org.openqa.selenium.WebDriver;
-//import org.openqa.selenium.WebElement;
-//import pages.base.BasePage;
-//
-//public class MobilePhoneReplenishmentPage extends BasePage {
-//    public MobilePhoneReplenishmentPage(WebDriver driver) {
-//        super(driver);
-//    }
-//
-//    private final By buttonWallet = By.xpath("//div[contains(text(), 'My wallet')]");
-//    private final By inputCardPhoneNumber = By.xpath("//input[@data-qa-node='phone-number']");
-//    private final By inputCardAmount = By.xpath("//input[@data-qa-node='amount']");
-//    private final By inputCardFrom = By.xpath("//input[@data-qa-node='numberdebitSource']");
-//    private final By inputCardExpDate = By.xpath("//input[@data-qa-node='expiredebitSource']");
-//    private final By inputCardCvv = By.xpath("//input[@data-qa-node='cvvdebitSource']");
-//    private final By firstNameDebit = By.xpath("//input[@data-qa-node='firstNamedebitSource']");
-//    private final By lastNameDebit = By.xpath("//input[@data-qa-node='lastNamedebitSource']");
-//
-//    private final By buttonSubmit = By.xpath("//button[@data-qa-node='submit']");
-//    private final By paymentDetails = By.xpath("//span[@data-qa-node='details']");
-//
-//
-//
-//
-//    public MobilePhoneReplenishmentPage selectCardWallet () {
-//        waitElementIsVisible(driver.findElement(buttonWallet)).click();
-//        return this;
-//    }
-//
-//    public MobilePhoneReplenishmentPage enterPhoneNumber(String phoneNumber) {
-//        typeInput(inputCardPhoneNumber, phoneNumber);
-////        driver.findElement(inputCardPhoneNumber).sendKeys(phoneNumber);
-//        return this;
-//    }
-//
-//    public MobilePhoneReplenishmentPage enterAmount(String amount) {
-//        clearAndTypeInput(inputCardAmount, amount);
-////        WebElement inputAmount = driver.findElement(inputCardAmount);
-////        inputAmount.sendKeys(Keys.CONTROL+"A");
-////        inputAmount.sendKeys(Keys.BACK_SPACE);
-////        inputAmount.sendKeys(amount);
-//        return this;
-//    }
-//
-//    public MobilePhoneReplenishmentPage enterCardFrom(String cardFrom) {
-//        typeInput(inputCardFrom, cardFrom);
-////        driver.findElement(inputCardFrom).sendKeys(cardFrom);
-//        return this;
-//    }
-//
-//    public MobilePhoneReplenishmentPage enterCardExpDate(String expDate) {
-//        typeInput(inputCardExpDate, expDate);
-////        driver.findElement(inputCardExpDate).sendKeys(expDate);
-//        return this;
-//    }
-//
-//    public MobilePhoneReplenishmentPage enterCardCvv(String cvv) {
-//        typeInput(inputCardCvv, cvv);
-////        driver.findElement(inputCardCvv).sendKeys(cvv);
-//        return this;
-//    }
-//
-//    public MobilePhoneReplenishmentPage enterCardFirstName(String firstName) {
-//        typeInput(firstNameDebit, firstName);
-////        driver.findElement(firstNameDebit).sendKeys(firstName);
-//        return this;
-//    }
-//
-//    public MobilePhoneReplenishmentPage enterCardLastName(String lastName) {
-//        typeInput(lastNameDebit, lastName);
-////        driver.findElement(lastNameDebit).sendKeys(lastName);
-//        return this;
-//    }
-//
-//
-//    public MobilePhoneReplenishmentPage submitToTheCard() {
-//        driver.findElement(buttonSubmit).click();
-//        return this;
-//    }
-//
-//    public MobilePhoneReplenishmentPage checkPaymentDetailsIsPresentInTheCart(String text) {
-//        WebElement details = waitElementIsVisible(driver.findElement(paymentDetails));
-//        Assertions.assertEquals(text, details.getText());
-//        return this;
-//    }
-//}
+package pages.telecomunications;
+
+import pages.base.BasePage;
+
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.SelenideElement;
+import static com.codeborne.selenide.Selenide.$x;
+
+public class MobilePhoneReplenishmentPage extends BasePage {
+
+    private final SelenideElement inputCardPhoneNumber = $x("//input[@data-qa-node='phone-number']");
+    private final SelenideElement inputCardAmount = $x("//input[@data-qa-node='amount']");
+    private final SelenideElement inputCardFrom = $x("//input[@data-qa-node='numberdebitSource']");
+    private final SelenideElement inputCardExpDate = $x("//input[@data-qa-node='expiredebitSource']");
+    private final SelenideElement inputCardCvv = $x("//input[@data-qa-node='cvvdebitSource']");
+    private final SelenideElement buttonSubmit = $x("//button[@data-qa-node='submit']");
+//    private final SelenideElement cardNumberInTheCart = $x("//td[@data-qa-node='card']");
+//    private final SelenideElement recipientNameInTheCart = $x("//span[@data-qa-node='nameB']");
+//    private final SelenideElement amountInTheCart = $x("//span[@data-qa-node='amount']");
+//    private final SelenideElement commissionInTheCart = $x("//span[@data-qa-node='commission']");
+//    private final SelenideElement amountCurrencyInTheCart = $x("//small[@data-qa-node='currency']");
+//    private final SelenideElement commissionCurrencyInTheCart = $x("//small[@data-qa-node='commission-currency']");
+    private final SelenideElement buttonWallet = $x("//div[@data-qa-node='debitSourceSource']");
+
+    private final SelenideElement firstNameDebit = $x("//input[@data-qa-node='firstNamedebitSource']");
+    private final SelenideElement lastNameDebit = $x("//input[@data-qa-node='lastNamedebitSource']");
+
+
+
+
+
+    /**
+     * Enter a phone number excluding country code
+     * @param phone phone number
+     * **/
+    public MobilePhoneReplenishmentPage enterPhoneNumber(String phone) {
+       clearAndTypeInput(inputCardPhoneNumber, phone);
+        return this;
+    }
+
+    /**
+     * Enter the amount of replenishment of the mobile phone number
+     * @param amount amount of replenishment
+     * **/
+    public MobilePhoneReplenishmentPage enterAmount(String amount) {
+        clearAndTypeInput(inputCardAmount, amount);
+        return this;
+    }
+
+    /**
+     * Enter the card number for payment
+     * @param number card number
+     * **/
+    public MobilePhoneReplenishmentPage enterCardFrom(String number) {
+        clearAndTypeInput(inputCardFrom, number);
+        return this;
+    }
+
+    /**
+     * Enter the card expiry data for payment
+     * @param expData expiry data
+     * **/
+    public MobilePhoneReplenishmentPage enterCardExpDate(String expData) {
+        clearAndTypeInput(inputCardExpDate, expData);
+        return this;
+    }
+
+    /**
+     * Enter the cvv code from the card for payment
+     * @param cvv cvv code
+     * **/
+    public MobilePhoneReplenishmentPage enterCardCvv(String cvv) {
+        clearAndTypeInput(inputCardCvv, cvv);
+        return this;
+    }
+
+    public MobilePhoneReplenishmentPage enterCardFirstName(String firstName) {
+        clearAndTypeInput(firstNameDebit, firstName);
+        return this;
+    }
+
+    public MobilePhoneReplenishmentPage enterCardLastName(String lastName) {
+        clearAndTypeInput(lastNameDebit, lastName);
+        return this;
+    }
+
+
+    /**
+     * Acceptance of payment
+     * **/
+    public MobilePhoneReplenishmentPage submitMobileReplenishment() {
+        buttonSubmit.shouldBe(Condition.visible).click();
+        return this;
+    }
+
+    /**
+     * Choose a card from  the wallet
+     * **/
+    public MobilePhoneReplenishmentPage selectCardFromWallet() {
+        buttonWallet.shouldBe(Condition.visible).click();
+        return this;
+    }
+
+    /**
+     * Check the card number with the payment and the recipient
+     * @param cardForm the card number for payment
+     * @param recipient mobile operator
+     * **/
+    public MobilePhoneReplenishmentPage checkPaymentCardAndRecipient(String cardForm, String recipient) {
+        checkMessage(cardForm);
+        checkMessage(recipient);
+        return this;
+    }
+
+    /**
+     * Check the amount and commission amount
+     * @param amount the amount will be credited to the mobile account
+     * @param commission the commission in addition to mobile account
+     * **/
+    public MobilePhoneReplenishmentPage checkPaymentAmountAndCommission(String amount, String commission) {
+        checkMessage(amount);
+        checkMessage(commission);
+        return this;
+    }
+
+    /**
+     * Check the currency of the payment amount and currency of fee
+     * @param currencyAmount currency of the payment
+     * @param commissionAmount currency of fee
+     * **/
+    public MobilePhoneReplenishmentPage checkPaymentCurrency(String currencyAmount, String commissionAmount) {
+        checkMessage(currencyAmount);
+        checkMessage(commissionAmount);
+        return this;
+    }
+}

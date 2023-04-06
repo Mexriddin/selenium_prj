@@ -4,8 +4,9 @@ package pages.base;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.Keys;
-import static com.codeborne.selenide.Selenide.$x;
-import static com.codeborne.selenide.Selenide.open;
+
+import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selenide.*;
 
 public class BasePage {
 
@@ -25,7 +26,7 @@ public class BasePage {
      * **/
     protected void clearAndTypeInput(SelenideElement element, String value){
         while (!element.getAttribute("value").equals("")) element.sendKeys((Keys.BACK_SPACE));
-        element.sendKeys(value);
+        element.setValue(value);
     }
 
     /**
@@ -33,5 +34,9 @@ public class BasePage {
      * **/
     public void checkIsDisplayedAuthWidget(){
         authWidget.shouldBe(Condition.visible);
+    }
+
+    public void checkMessage(String msg){
+        $(byText(msg)).shouldBe(Condition.visible);
     }
 }
