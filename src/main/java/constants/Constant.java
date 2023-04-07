@@ -29,4 +29,10 @@ public class Constant {
         public static final String RECIPIENT_CARD_FIST_NAME = "LUIS";
         public static final String RECIPIENT_CARD_LAST_NAME = "MYERS";
     }
+
+    public static class Currency {
+        public static final String CURRENCY_UAH = "UAH";
+        public static final String CURRENCY_USD = "USD";
+
+    }
 }

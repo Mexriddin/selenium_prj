@@ -8,14 +8,14 @@ import static com.codeborne.selenide.Selenide.$x;
 public class CarLoansPage extends BasePage {
 
     public final SelenideElement tabAgreements = $x("//div[contains(text(), 'Agreements')]");
-    public final SelenideElement amountFieldCarCost = $x("//input[@data-qa-node='amont']");
+    public final SelenideElement amountFieldCarCost = $x("//input[@data-qa-node='amount']");
     public final SelenideElement amountFieldPrepaidExpense = $x("//input[@data-qa-node='prepaid']");
     public final SelenideElement phoneCodeButton = $x("//button[@data-qa-node='phone-code']");
     public final SelenideElement searchPhoneCodeField = $x("//input[@placeholder='Search']");
     public final SelenideElement phoneNumberField = $x("//input[@data-qa-node='phone-number']");
     public final SelenideElement applyOrderButton = $x("//button[@type='button']");
     public final SelenideElement selectedUsedAutoTab = $x("//div[@data-qa-node='type']");
-    public final SelenideElement confirmForm = $x("//div[contains(text(), 'One-time password has been')]");
+    public final SelenideElement confirmForm = $x("//div[contains(text(), 'Login to')]");
     public final SelenideElement buttonCountryRussia = $x("//div[@name='Russia']");
 
     /**
@@ -54,7 +54,7 @@ public class CarLoansPage extends BasePage {
 
     /**
      * Filling in the mobile number to apply
-     * @param phoneNumber mobile number ti apply
+     * @param phoneNumber mobile number to apply
      * **/
     public CarLoansPage enterPhoneNumber(String phoneNumber) {
         clearAndTypeInput(phoneNumberField, phoneNumber);
@@ -71,7 +71,7 @@ public class CarLoansPage extends BasePage {
     }
 
     /**
-     * Selection of drop-down list od codes of countries, mobile communication
+     * Selection of drop-down list codes of countries, mobile communication
      * **/
     public CarLoansPage selectPhoneCodeButton(){
         phoneCodeButton.shouldBe(Condition.visible).click();

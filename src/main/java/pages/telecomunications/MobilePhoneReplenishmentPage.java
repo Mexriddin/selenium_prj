@@ -58,10 +58,10 @@ public class MobilePhoneReplenishmentPage extends BasePage {
 
     /**
      * Enter the card expiry data for payment
-     * @param expData expiry data
+     * @param expDate expiry data
      * **/
-    public MobilePhoneReplenishmentPage enterCardExpDate(String expData) {
-        clearAndTypeInput(inputCardExpDate, expData);
+    public MobilePhoneReplenishmentPage enterCardExpDate(String expDate) {
+        clearAndTypeInput(inputCardExpDate, expDate);
         return this;
     }
 
@@ -103,11 +103,9 @@ public class MobilePhoneReplenishmentPage extends BasePage {
 
     /**
      * Check the card number with the payment and the recipient
-     * @param cardForm the card number for payment
      * @param recipient mobile operator
      * **/
-    public MobilePhoneReplenishmentPage checkPaymentCardAndRecipient(String cardForm, String recipient) {
-        checkMessage(cardForm);
+    public MobilePhoneReplenishmentPage checkPaymentNumberAndRecipient(String recipient) {
         checkMessage(recipient);
         return this;
     }
@@ -126,11 +124,11 @@ public class MobilePhoneReplenishmentPage extends BasePage {
     /**
      * Check the currency of the payment amount and currency of fee
      * @param currencyAmount currency of the payment
-     * @param commissionAmount currency of fee
+     * @param currencyCommission currency of fee
      * **/
-    public MobilePhoneReplenishmentPage checkPaymentCurrency(String currencyAmount, String commissionAmount) {
+    public MobilePhoneReplenishmentPage checkPaymentCurrency(String currencyAmount, String currencyCommission) {
         checkMessage(currencyAmount);
-        checkMessage(commissionAmount);
+        checkMessage(currencyCommission);
         return this;
     }
 }

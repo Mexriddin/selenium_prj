@@ -18,5 +18,7 @@ public class Config {
         Configuration.holdBrowserOpen = HOLD_BROWSER_OPEN;
         Configuration.reportsFolder = "build/reports/tests";
         Configuration.browser = BROWSER_NAME;
+        Configuration.pageLoadTimeout = 10000;
+        Configuration.timeout = 10000;
     }
 }
